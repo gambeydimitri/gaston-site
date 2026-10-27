@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificat de ramonage gratuit en PDF | Gaston</title>
+<meta name="description" content="Créez gratuitement votre certificat de ramonage conforme au décret 2023-641 : signature sur téléphone, PDF à votre logo, en 2 minutes.">
+<meta name="theme-color" content="#1C1917">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="canonical" href="https://gaston-ramonage.fr/certificat-ramonage-gratuit.html">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/">
+      <svg width="32" height="32" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#1C1917"/><path d="M9 27V17l9-7 9 7v10z" fill="none" stroke="#FAF8F5" stroke-width="2.2" stroke-linejoin="round"/><rect x="21" y="9" width="4" height="7" fill="#EA580C"/></svg>
+      <span>Gaston</span>
+    </a>
+    <a class="topbar-cta" href="/#fondateur">Offre fondateur</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p class="pill">Gratuit · sans compte · décret n° 2023-641</p>
+    <h1>Votre certificat de ramonage en 2 minutes</h1>
+    <p class="lead">Remplissez, faites signer le client sur votre téléphone, téléchargez le PDF à votre logo. Vos informations d'entreprise sont gardées pour la prochaine fois.</p>
+  </section>
+
+  <form id="form" class="layout" novalidate>
+    <div class="col-main">
+      <fieldset class="card">
+        <legend>1. Votre entreprise</legend>
+        <p class="hint">Mémorisée sur cet appareil : vous ne la saisissez qu'une fois.</p>
+        <div class="grid">
+          <label class="span2">Raison sociale *<input name="e_nom" required autocomplete="organization"></label>
+          <label class="span2">Adresse *<input name="e_adresse" required autocomplete="address-line1"></label>
+          <label>Code postal *<input name="e_cp" required inputmode="numeric" autocomplete="postal-code"></label>
+          <label>Ville *<input name="e_ville" required autocomplete="address-level2"></label>
+          <label>Téléphone<input name="e_telephone" type="tel" autocomplete="tel"></label>
+          <label>E-mail de l'entreprise<input name="e_email" type="email" autocomplete="email"></label>
+          <label>SIRET *<input name="e_siret" required inputmode="numeric" placeholder="14 chiffres"></label>
+          <label>Qualification<input name="e_qualification" placeholder="Ex. CTM ramoneur-fumiste"></label>
+          <label>Assureur RC Pro *<input name="e_assureur" required></label>
+          <label>N° de police *<input name="e_police" required></label>
+          <label class="span2">Nom de l'intervenant *<input name="e_ramoneur" required autocomplete="name"></label>
+          <div class="span2 logo-row">
+            <label for="logo" class="file-label">Logo (facultatif)</label>
+            <input id="logo" type="file" accept="image/png,image/jpeg">
+            <img id="logo-preview" alt="Aperçu du logo" hidden>
+            <button type="button" id="logo-remove" class="link" hidden>Retirer le logo</button>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>2. Le client</legend>
+        <div class="grid">
+          <label class="span2">Nom du client *<input name="c_nom" required></label>
+          <label class="span2">Adresse de l'installation *<input name="c_adresse" required></label>
+          <label>Code postal *<input name="c_cp" required inputmode="numeric"></label>
+          <label>Ville *<input name="c_ville" required></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>3. L'installation</legend>
+        <div class="grid">
+          <label>Appareil *
+            <select name="a_type" required>
+              <option>Poêle à bûches</option>
+              <option>Poêle à granulés</option>
+              <option>Insert</option>
+              <option>Foyer fermé</option>
+              <option>Foyer ouvert</option>
+              <option>Cuisinière</option>
+              <option>Chaudière</option>
+              <option>Autre</option>
+            </select>
+          </label>
+          <label>Marque et modèle<input name="a_marque" placeholder="Facultatif"></label>
+          <label>Combustible *
+            <select name="a_combustible" required>
+              <option>Bois</option>
+              <option>Granulés</option>
+              <option>Charbon</option>
+              <option>Fioul</option>
+              <option>Gaz</option>
+            </select>
+          </label>
+          <label>Méthode *
+            <select name="k_methode" required>
+              <option>Mécanique, par le haut</option>
+              <option>Mécanique, par le bas</option>
+              <option>Mécanique, par le haut et par le bas</option>
+            </select>
+          </label>
+          <label class="span2">Conduit(s) ramoné(s) *<input name="k_description" required placeholder="Ex. tubage inox Ø 150 mm, 7 m"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>4. Le contrôle</legend>
+        <label class="check-ok"><input type="checkbox" name="vacuite" checked> Vacuité du conduit vérifiée sur toute sa longueur</label>
+        <label>Observations, anomalies<textarea name="observations" rows="3" placeholder="Aucune anomalie constatée"></textarea></label>
+        <label>Conseils au client
+          <textarea name="conseils" rows="4"></textarea>
+          <span class="hint">Pré-rempli pour les combustibles solides. Modifiez-le librement.</span>
+        </label>
+        <div class="grid">
+          <label>Date d'intervention *<input name="date" type="date" required></label>
+          <label>Prochain ramonage avant le *<input name="prochain" type="date" required></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>5. Les signatures</legend>
+        <div class="sigs">
+          <div class="sig">
+            <span class="sig-label">Signature de l'intervenant</span>
+            <canvas id="sig-ramoneur" class="sig-pad" aria-label="Zone de signature de l'intervenant" role="img"></canvas>
+            <button type="button" class="link" data-clear="sig-ramoneur">Effacer</button>
+          </div>
+          <div class="sig">
+            <span class="sig-label">Signature du client</span>
+            <canvas id="sig-client" class="sig-pad" aria-label="Zone de signature du client" role="img"></canvas>
+            <button type="button" class="link" data-clear="sig-client">Effacer</button>
+          </div>
+        </div>
+        <p class="hint">Signez avec le doigt. Votre signature est mémorisée pour les prochains certificats.</p>
+      </fieldset>
+    </div>
+
+    <aside class="col-side">
+      <div class="card sticky">
+        <h2>Recevoir le certificat</h2>
+        <label>Votre e-mail *<input name="lead_email" type="email" required autocomplete="email" placeholder="vous@exemple.fr"></label>
+        <p class="small">Nous vous écrirons au sujet de Gaston (nouveautés, offre fondateur). Désinscription en un clic. <a href="confidentialite.html">Confidentialité</a></p>
+        <p id="errors" class="errors" role="alert" hidden></p>
+        <button type="submit" class="btn-primary" id="submit">Télécharger le certificat PDF</button>
+        <p id="done" class="done" role="status" hidden>Certificat téléchargé. Pensez à l'envoyer à votre client.</p>
+      </div>
+      <div class="card dark" id="offre">
+        <p class="dark-title">Et si ce client revenait tout seul l'an prochain ?</p>
+        <p>Avec Gaston Pro, le certificat part directement au client par e-mail ou SMS, et il est relancé automatiquement dans 11 mois.</p>
+        <p class="price"><strong>19 €</strong> / mois à vie pour les 20 premiers</p>
+        <a class="btn-light" href="/#fondateur">Réserver ma place</a>
+      </div>
+    </aside>
+  </form>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© 2026 Gaston · contact@gaston-ramonage.fr</span>
+    <nav aria-label="Liens légaux"><a href="mentions-legales.html">Mentions légales</a> <a href="confidentialite.html">Confidentialité</a></nav>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="pdf.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
