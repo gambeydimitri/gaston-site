@@ -33,14 +33,22 @@ module.exports = async function handler(req, res) {
     var r = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
-        'api-key': process.env.BREVO_API_KEY,
+        'api-key': String(process.env.BREVO_API_KEY).trim(),
         'content-type': 'application/json',
         accept: 'application/json'
       },
       body: JSON.stringify(payload)
     });
-    res.status(r.ok ? 200 : 502).json({ ok: r.ok });
+    if (r.ok) {
+      res.status(200).json({ ok: true });
+      return;
+    }
+    var detail = {};
+    try { detail = await r.json(); } catch (e) {}
+    console.error('Brevo a refusé l\'inscription', r.status, detail.code, detail.message);
+    res.status(502).json({ ok: false, brevo: r.status, code: detail.code || null });
   } catch (e) {
-    res.status(502).json({ ok: false });
+    console.error('Brevo injoignable', e && e.message);
+    res.status(502).json({ ok: false, code: 'reseau' });
   }
 };
