@@ -1,4 +1,4 @@
-/* Page d'accueil : réservation des places fondateur. */
+/* Page d'accueil : réservation des places de l'offre de lancement. */
 (function () {
   'use strict';
   var form = document.getElementById('fondateur-form');

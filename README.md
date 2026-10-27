@@ -10,12 +10,12 @@ une petite fonction serveur (`api/inscription.js`).
 
 | Fichier | Rôle |
 | --- | --- |
-| `index.html`, `landing.css`, `landing.js` | La page d'accueil et la réservation des places fondateur |
+| `index.html`, `landing.css`, `landing.js` | La page d'accueil et la réservation des places de l'offre de lancement |
 | `certificat-ramonage-gratuit.html` | La page du générateur |
 | `styles.css` | Le design (couleurs, polices, mise en page) |
 | `app.js` | Le formulaire : mémorisation, logo, signatures, téléchargement |
 | `pdf.js` | La mise en page du certificat PDF |
-| `api/inscription.js` | Ajoute l'e-mail à votre liste Brevo (ramoneurs du générateur ou fondateurs) |
+| `api/inscription.js` | Ajoute l'e-mail à votre liste Brevo (ramoneurs du générateur ou inscrits à l'offre de lancement) |
 | `confidentialite.html`, `mentions-legales.html` | Pages légales (à compléter : passages entre crochets) |
 
 ## Mettre en ligne (gratuit, environ 30 minutes)
@@ -29,10 +29,10 @@ une petite fonction serveur (`api/inscription.js`).
 4. **Récupérer les e-mails des ramoneurs** (facultatif au début) :
    - créez un compte gratuit sur brevo.com, puis une liste « Ramoneurs » (notez son numéro) ;
    - « Paramètres » > « Clés API » > créez une clé ;
-   - créez aussi une liste « Fondateurs » pour les réservations de la page d'accueil ;
+   - créez aussi une liste « Fondateurs » pour les réservations de l'offre de lancement ;
    - dans Vercel : « Settings » > « Environment Variables » : `BREVO_API_KEY` = la clé, `BREVO_LIST_ID` = le numéro de la liste « Ramoneurs », `BREVO_LIST_ID_FONDATEURS` = le numéro de la liste « Fondateurs » ;
    - redéployez (« Deployments » > « Redeploy »).
-   Sans ces variables, le générateur fonctionne quand même (les e-mails ne sont pas enregistrés), mais la réservation fondateur affiche une erreur : **branchez Brevo avant d'annoncer la page d'accueil**.
+   Sans ces variables, le générateur fonctionne quand même (les e-mails ne sont pas enregistrés), mais la réservation de l'offre de lancement affiche une erreur : **branchez Brevo avant d'annoncer la page d'accueil**.
 
 ## Avant d'annoncer le site
 
