@@ -6,20 +6,6 @@
 // Sans ces variables, la fonction répond simplement OK sans rien enregistrer.
 
 module.exports = async function handler(req, res) {
-  if (req.method === 'GET' && req.query && req.query.diag === 'gaston27') {
-    // Diagnostic temporaire : codes de réponse Brevo uniquement, aucune donnée.
-    var key = String(process.env.BREVO_API_KEY || '').trim();
-    var h = { 'api-key': key, accept: 'application/json', 'content-type': 'application/json' };
-    var out = { keyLength: key.length, keyPrefix: key.slice(0, 7) };
-    try { var a = await fetch('https://api.brevo.com/v3/account', { headers: h }); out.account = a.status; } catch (e) { out.account = 'err ' + e.message; }
-    try { var l = await fetch('https://api.brevo.com/v3/contacts/lists?limit=10', { headers: h }); out.lists = l.status; } catch (e) { out.lists = 'err ' + e.message; }
-    try {
-      var c = await fetch('https://api.brevo.com/v3/contacts', { method: 'POST', headers: h, body: JSON.stringify({ email: 'gambeydimitri+diag@gmail.com', updateEnabled: true }) });
-      out.createNoList = c.status; try { out.createNoListBody = (await c.text()).slice(0, 200); } catch (e) {}
-    } catch (e) { out.createNoList = 'err ' + e.message; }
-    res.status(200).json(out);
-    return;
-  }
   if (req.method !== 'POST') {
     res.status(405).json({ ok: false });
     return;
