@@ -7,7 +7,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
-<meta name="description" content="Le logiciel des ramoneurs : certificat signé sur téléphone, fichier clients et relance annuelle automatique. Essai gratuit 14 jours, sans carte bancaire.">
+<meta name="description" content="Le logiciel des ramoneurs : certificat signé sur téléphone en 2 minutes, clients relancés automatiquement chaque année. Essai gratuit 14 jours, sans carte bancaire.">
 <meta name="theme-color" content="#1C1917">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,8 +38,8 @@
 <section id="top" style="max-width: 1200px; margin: 0 auto; padding: clamp(40px, 8vw, 80px) 20px 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px;">
 <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
 <p style="margin: 0; align-self: flex-start; background: #FFEDD5; color: #9A3412; font-size: 14px; font-weight: 700; padding: 8px 14px; border-radius: 999px;">Logiciel français pour ramoneurs · conforme au décret 2023-641</p>
-<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 9vw, 64px); line-height: 1.02; letter-spacing: -0.035em;">Ramonez.<br><span style="color: #C2410C;">Gaston</span> s'occupe du reste.</h1>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #44403C; max-width: 560px;">Le certificat signé sur votre téléphone en 2 minutes, envoyé au client, et sa relance automatique l'an prochain. Essayez tout gratuitement pendant 14 jours, puis choisissez votre formule.</p>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 9vw, 64px); line-height: 1.02; letter-spacing: -0.035em;">Plus de paperasse le soir.<br><span style="color: #C2410C;">Plus de clients qui oublient.</span></h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #44403C; max-width: 560px;">Gaston fait le certificat avec vous chez le client, l'envoie, le range, et rappelle votre client l'an prochain pour qu'il reprenne rendez-vous avec vous. Vous, vous ramonez.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px;">
 <a href="#essai" style="background: #C2410C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box;">Commencer l'essai gratuit</a>
 <a href="#tarifs" style="background: #FFFFFF; color: #1C1917; text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 26px; border-radius: 14px; border: 1.5px solid #D6D3D1; min-height: 44px; box-sizing: border-box;">Voir les formules</a>
@@ -81,6 +81,39 @@
 <div style="background: #C2410C; color: #FFFFFF; border-radius: 12px; padding: 14px; text-align: center; font-weight: 700; font-size: 15px;">Envoyer le certificat</div>
 <span style="text-align: center; font-size: 12px; color: #57534E;">Relance prévue en septembre 2027</span>
 </div>
+</div>
+</div>
+</section>
+
+<!-- Ce que Gaston vous rapporte -->
+<section id="gains" style="max-width: 1200px; margin: 0 auto; padding: 24px 24px 80px; display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px;">
+<p style="margin: 0; font-size: 14px; font-weight: 700; color: #9A3412; text-transform: uppercase; letter-spacing: 0.08em;">Ce que Gaston vous rapporte</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 6vw, 44px); line-height: 1.08; letter-spacing: -0.03em;">Du temps, des clients qui reviennent, et la tête tranquille.</h2>
+</div>
+<div class="gains">
+<div class="gain"><span class="gain-k">⏱</span><h3>Vos soirées vous reviennent</h3><p>Le certificat se fait chez le client, en 2 minutes, et part tout seul par e-mail. Rien à recopier, rien à scanner, rien à poster le soir.</p></div>
+<div class="gain gain-hl"><span class="gain-k">€</span><h3>Vos clients reviennent tout seuls</h3><p>Onze mois après chaque ramonage, Gaston envoie un rappel à votre client. Ceux qui vous auraient oublié reprennent rendez-vous avec vous, pas avec un concurrent.</p></div>
+<div class="gain"><span class="gain-k">🛡</span><h3>Couvert en cas de pépin</h3><p>Chaque certificat est conforme au décret 2023-641, signé, daté et archivé. Si un assureur ou un client vous le redemande dans 3 ans, vous le retrouvez en 10 secondes.</p></div>
+</div>
+
+<div class="calc" id="calcul">
+<div class="calc-text">
+<h3>Combien Gaston peut vous rapporter ?</h3>
+<p>Réglez avec vos chiffres. Le calcul se met à jour tout seul.</p>
+<label for="c-clients">Ramonages par an : <b id="c-clients-v">400</b></label>
+<input id="c-clients" type="range" min="50" max="1500" step="50" value="400">
+<label for="c-prix">Prix moyen d'un ramonage : <b id="c-prix-v">80 €</b></label>
+<input id="c-prix" type="range" min="50" max="150" step="5" value="80">
+<label for="c-retour">Clients récupérés grâce aux rappels : <b id="c-retour-v">5 %</b></label>
+<input id="c-retour" type="range" min="1" max="15" step="1" value="5">
+</div>
+<div class="calc-res">
+<div><span class="calc-big" id="c-ca">1 600 €</span><span class="calc-lbl">de chiffre d'affaires en plus par an</span></div>
+<div><span class="calc-big" id="c-h">53 h</span><span class="calc-lbl">de paperasse en moins par an</span></div>
+<div class="calc-cmp">La formule Pro coûte <b>348 € par an</b>. <span id="c-rent">Il est rentabilisé dès 5 ramonages récupérés.</span></div>
+<p class="calc-note">Estimation indicative : 8 minutes gagnées par certificat par rapport à un certificat fait à la main. Le taux de clients récupérés dépend de votre clientèle.</p>
+<a href="#essai" class="calc-cta">Essayer 14 jours gratuits</a>
 </div>
 </div>
 </section>
@@ -274,6 +307,17 @@
 </div>
 </section>
 
+<!-- Qui est derrière -->
+<section style="max-width: 860px; margin: 0 auto; padding: 0 24px 64px;">
+<div style="background: #FFFFFF; border: 1px solid #ECE7E1; border-radius: 24px; padding: 28px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+<div style="width: 64px; height: 64px; border-radius: 50%; background: #C2410C; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; flex: none;">DG</div>
+<div style="flex: 1 1 300px; min-width: 0;">
+<p style="margin: 0 0 6px; font-weight: 700; font-size: 18px;">Une vraie personne derrière Gaston</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #44403C;">Je suis Dimitri, installé à Feillens, dans l'Ain. Je construis Gaston avec les ramoneurs qui l'utilisent. Une question, une idée, un problème : écrivez-moi à <a href="mailto:contact@gaston-ramonage.fr">contact@gaston-ramonage.fr</a>, je réponds moi-même.</p>
+</div>
+</div>
+</section>
+
 <!-- Inscription à l'essai -->
 <section id="essai" class="final">
 <div class="final-box">
@@ -306,5 +350,6 @@
 
 </div>
 <script src="landing.js"></script>
+<script src="calcul.js"></script>
 </body>
 </html>
