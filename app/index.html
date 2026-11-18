@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gaston · Mon espace</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1C1917">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="#accueil" aria-label="Gaston, accueil">
+    <svg width="34" height="34" viewBox="0 0 240 240" aria-hidden="true"><rect width="240" height="240" rx="58" fill="#C2410C"/><g transform="translate(3 4)" fill="none" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"><path d="M134 138 H168 A20 20 0 0 1 188 158 A36 36 0 0 1 152 194 H86 A32 32 0 0 1 54 162 V112 Q54 101 63 94 L108 56 Q120 46 132 56 L164 82"/><path d="M146 66 V30"/></g></svg>
+    <span>Gaston</span>
+  </a>
+  <span id="trial-pill" class="pill" hidden></span>
+</header>
+
+<main id="main">
+  <!-- Connexion -->
+  <section id="v-connexion" class="view" hidden>
+    <div class="auth">
+      <h1>Votre espace Gaston</h1>
+      <p class="muted" id="auth-intro">Créez votre compte : 14 jours d'essai gratuits, tout inclus, sans carte bancaire.</p>
+      <div class="seg" role="tablist">
+        <button type="button" role="tab" id="tab-signup" aria-selected="true">Créer mon compte</button>
+        <button type="button" role="tab" id="tab-login" aria-selected="false">J'ai déjà un compte</button>
+      </div>
+      <form id="auth-form" novalidate>
+        <label for="auth-email">E-mail professionnel</label>
+        <input id="auth-email" type="email" autocomplete="email" required placeholder="vous@exemple.fr">
+        <label for="auth-pass">Mot de passe</label>
+        <input id="auth-pass" type="password" autocomplete="new-password" required minlength="8" placeholder="8 caractères minimum">
+        <button type="submit" class="btn primary" id="auth-submit">Commencer mon essai gratuit</button>
+        <p id="auth-msg" class="msg" role="status" hidden></p>
+      </form>
+      <p class="small">En créant un compte, vous acceptez notre <a href="/confidentialite.html">politique de confidentialité</a>.</p>
+    </div>
+  </section>
+
+  <!-- Accueil -->
+  <section id="v-accueil" class="view" hidden>
+    <h1 id="hello">Bonjour</h1>
+    <a href="#nouveau" class="btn primary big">+ Nouveau certificat</a>
+    <div class="stats">
+      <div class="stat"><b id="st-certifs">0</b><span>certificats</span></div>
+      <div class="stat"><b id="st-clients">0</b><span>clients</span></div>
+      <div class="stat"><b id="st-relances">0</b><span>à revoir ce mois-ci</span></div>
+    </div>
+    <div id="setup-hint" class="card hint" hidden>
+      <b>Première étape : votre entreprise.</b>
+      <p>Nom, SIRET, assurance, logo et signature : vous ne les saisissez qu'une fois, ils apparaîtront sur tous vos certificats.</p>
+      <a href="#entreprise" class="btn">Compléter mon entreprise</a>
+    </div>
+    <h2>À revoir bientôt</h2>
+    <ul id="list-due" class="list"></ul>
+    <h2>Derniers certificats</h2>
+    <ul id="list-recent" class="list"></ul>
+  </section>
+
+  <!-- Clients -->
+  <section id="v-clients" class="view" hidden>
+    <h1>Clients</h1>
+    <input id="client-search" type="search" placeholder="Rechercher un nom, une ville…" aria-label="Rechercher un client">
+    <ul id="list-clients" class="list"></ul>
+  </section>
+
+  <!-- Fiche client -->
+  <section id="v-client" class="view" hidden>
+    <a href="#clients" class="back">← Clients</a>
+    <h1 id="cl-nom"></h1>
+    <p id="cl-adr" class="muted"></p>
+    <div class="card">
+      <form id="client-form" class="grid2" novalidate>
+        <label>Nom<input name="nom" required></label>
+        <label>Téléphone<input name="telephone" type="tel"></label>
+        <label class="full">Adresse<input name="adresse"></label>
+        <label>Code postal<input name="cp" inputmode="numeric" maxlength="5"></label>
+        <label>Ville<input name="ville"></label>
+        <label class="full">E-mail<input name="email" type="email"></label>
+        <label class="full">Notes<textarea name="notes" rows="2"></textarea></label>
+        <div class="full row"><button class="btn" type="submit">Enregistrer</button><a class="btn primary" id="cl-new-cert" href="#">+ Certificat pour ce client</a></div>
+        <p class="msg full" id="client-msg" role="status" hidden></p>
+      </form>
+    </div>
+    <h2>Historique</h2>
+    <ul id="list-client-certs" class="list"></ul>
+  </section>
+
+  <!-- Nouveau certificat -->
+  <section id="v-nouveau" class="view" hidden>
+    <h1>Nouveau certificat</h1>
+    <form id="cert-form" novalidate>
+      <fieldset class="card">
+        <legend>1. Le client</legend>
+        <label for="cf-client">Client existant</label>
+        <select id="cf-client"><option value="">+ Nouveau client</option></select>
+        <div class="grid2">
+          <label class="full">Nom du client *<input name="c_nom" required></label>
+          <label class="full">Adresse de l'installation *<input name="c_adresse" required></label>
+          <label>Code postal *<input name="c_cp" inputmode="numeric" maxlength="5" required></label>
+          <label>Ville *<input name="c_ville" required></label>
+          <label>E-mail du client<input name="c_email" type="email" placeholder="pour lui envoyer le certificat"></label>
+          <label>Téléphone<input name="c_tel" type="tel"></label>
+        </div>
+      </fieldset>
+      <fieldset class="card">
+        <legend>2. L'installation</legend>
+        <div class="grid2">
+          <label>Appareil *<select name="a_type"><option>Poêle à bûches</option><option>Poêle à granulés</option><option>Insert</option><option>Foyer fermé</option><option>Foyer ouvert</option><option>Cuisinière</option><option>Chaudière</option><option>Autre</option></select></label>
+          <label>Combustible *<select name="a_combustible"><option>Bois</option><option>Granulés</option><option>Charbon</option><option>Fioul</option><option>Gaz</option></select></label>
+          <label class="full">Marque et modèle<input name="a_marque"></label>
+          <label class="full">Conduit(s) ramoné(s) *<input name="k_description" required placeholder="ex. Tubage inox Ø 150, 7 m, sortie toiture"></label>
+          <label class="full">Méthode<select name="k_methode"><option>Mécanique, par le haut</option><option>Mécanique, par le bas</option><option>Mécanique, par le haut et par le bas</option></select></label>
+        </div>
+      </fieldset>
+      <fieldset class="card">
+        <legend>3. Le contrôle</legend>
+        <label class="check"><input type="checkbox" name="vacuite" checked> Vacuité du conduit vérifiée sur toute la longueur</label>
+        <label>Observations, anomalies<textarea name="observations" rows="2" placeholder="Aucune anomalie constatée"></textarea></label>
+        <label>Conseils au client<textarea name="conseils" rows="3"></textarea></label>
+        <div class="grid2">
+          <label>Date d'intervention *<input name="date" type="date" required></label>
+          <label>Prochain ramonage avant le *<input name="prochain" type="date" required></label>
+        </div>
+      </fieldset>
+      <fieldset class="card">
+        <legend>4. Les signatures</legend>
+        <span class="lbl">Signature de l'intervenant</span>
+        <canvas class="sig" id="sig-ramoneur" aria-label="Signature de l'intervenant"></canvas>
+        <button type="button" class="link" data-clear="sig-ramoneur">Effacer</button>
+        <span class="lbl">Signature du client</span>
+        <canvas class="sig" id="sig-client" aria-label="Signature du client"></canvas>
+        <button type="button" class="link" data-clear="sig-client">Effacer</button>
+      </fieldset>
+      <p id="cert-err" class="msg error" role="alert" hidden></p>
+      <button type="submit" class="btn primary big" id="cert-submit">Enregistrer et télécharger le PDF</button>
+    </form>
+  </section>
+
+  <!-- Entreprise -->
+  <section id="v-entreprise" class="view" hidden>
+    <h1>Mon entreprise</h1>
+    <p class="muted">Ces informations apparaissent sur tous vos certificats.</p>
+    <form id="ent-form" class="card grid2" novalidate>
+      <label class="full">Nom de l'entreprise *<input name="nom" required></label>
+      <label class="full">Adresse *<input name="adresse" required></label>
+      <label>Code postal *<input name="cp" inputmode="numeric" maxlength="5" required></label>
+      <label>Ville *<input name="ville" required></label>
+      <label>Téléphone<input name="telephone" type="tel"></label>
+      <label>E-mail<input name="email" type="email"></label>
+      <label>SIRET *<input name="siret" inputmode="numeric" required></label>
+      <label>Qualification<input name="qualification" placeholder="ex. CTM Ramoneur-fumiste"></label>
+      <label>Assureur RC Pro *<input name="assureur" required></label>
+      <label>N° de police<input name="police"></label>
+      <label class="full">Intervenant (votre nom) *<input name="ramoneur" required></label>
+      <div class="full">
+        <span class="lbl">Logo</span>
+        <div class="row"><img id="logo-prev" alt="" hidden><input id="logo-file" type="file" accept="image/png,image/jpeg"><button type="button" class="link" id="logo-del" hidden>Retirer</button></div>
+      </div>
+      <div class="full">
+        <span class="lbl">Votre signature (reprise sur chaque certificat)</span>
+        <canvas class="sig" id="sig-perso" aria-label="Votre signature"></canvas>
+        <button type="button" class="link" data-clear="sig-perso">Effacer</button>
+      </div>
+      <div class="full"><button class="btn primary" type="submit">Enregistrer</button></div>
+      <p class="msg full" id="ent-msg" role="status" hidden></p>
+    </form>
+    <div class="card">
+      <h2>Mon compte</h2>
+      <p class="muted" id="acc-email"></p>
+      <div class="row"><a class="btn" href="#abonnement">Mon abonnement</a><button type="button" class="btn" id="btn-export">Exporter mes données</button><button type="button" class="link" id="btn-logout">Se déconnecter</button></div>
+    </div>
+  </section>
+
+  <!-- Abonnement -->
+  <section id="v-abonnement" class="view" hidden>
+    <h1>Mon abonnement</h1>
+    <p id="ab-status" class="card"></p>
+    <div class="plans">
+      <div class="plan"><h3>Essentiel</h3><p class="price">19 € <small>/ mois</small></p><p class="muted">Certificats illimités, envoi au client, fiches clients et historique.</p><button class="btn" data-plan="essentiel">Choisir Essentiel</button></div>
+      <div class="plan hl"><h3>Pro</h3><p class="price">29 € <small>/ mois</small></p><p class="muted">Tout Essentiel, plus la relance annuelle automatique et le planning.</p><button class="btn primary" data-plan="pro">Choisir Pro</button></div>
+      <div class="plan"><h3>Équipe</h3><p class="price">49 € <small>/ mois</small></p><p class="muted">Tout Pro, jusqu'à 5 ramoneurs.</p><button class="btn" data-plan="equipe">Choisir Équipe</button></div>
+    </div>
+    <p class="small">Offre de lancement : −30 % à vie pour les 20 premiers abonnés. Sans engagement.</p>
+    <p id="ab-msg" class="msg" role="status" hidden></p>
+  </section>
+</main>
+
+<nav class="tabs" id="tabs" aria-label="Navigation" hidden>
+  <a href="#accueil" data-tab="accueil">Accueil</a>
+  <a href="#nouveau" data-tab="nouveau" class="tab-new">+ Certificat</a>
+  <a href="#clients" data-tab="clients">Clients</a>
+  <a href="#entreprise" data-tab="entreprise">Entreprise</a>
+</nav>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="/pdf.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="gaston.js"></script>
+</body>
+</html>
