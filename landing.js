@@ -1,4 +1,4 @@
-/* Page d'accueil : réservation des places de l'offre de lancement. */
+/* Page d'accueil : inscription à l'essai gratuit (liste Brevo des fondateurs). */
 (function () {
   'use strict';
   var form = document.getElementById('fondateur-form');
@@ -25,7 +25,7 @@
       return;
     }
     button.disabled = true;
-    button.textContent = 'Réservation…';
+    button.textContent = 'Inscription…';
     try {
       var r = await fetch('/api/inscription', {
         method: 'POST',
@@ -36,12 +36,12 @@
       var data = await r.json().catch(function () { return {}; });
       if (data.enregistre === false) throw new Error('liste non configurée');
       form.reset();
-      show('Votre place est réservée. Nous vous écrirons à l\'ouverture de Gaston Pro.');
+      show('C\'est noté ! Vous recevez votre accès à l\'essai par e-mail dès l\'ouverture, début décembre.');
     } catch (err) {
-      show('La réservation n\'a pas abouti. Réessayez, ou écrivez à contact@gaston-ramonage.fr.', true);
+      show('L\'inscription n\'a pas abouti. Réessayez, ou écrivez à contact@gaston-ramonage.fr.', true);
     } finally {
       button.disabled = false;
-      button.textContent = 'Réserver ma place';
+      button.textContent = 'Commencer mon essai gratuit';
     }
   });
 })();
